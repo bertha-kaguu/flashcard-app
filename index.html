@@ -3,23 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Flashcards App</title>
+<title>Flashcards Pro</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<h1>📚 Smart Flashcards</h1>
+<header>
+<h1>🧠 Flashcards Pro</h1>
+<button id="themeToggle">🌙</button>
+</header>
 
-<div class="card-form">
+<div class="controls">
+
 <input type="text" id="question" placeholder="Enter question">
 <input type="text" id="answer" placeholder="Enter answer">
-<button onclick="addFlashcard()">Add Card</button>
+
+<select id="category">
+<option value="General">General</option>
+<option value="Programming">Programming</option>
+<option value="Science">Science</option>
+<option value="Math">Math</option>
+</select>
+
+<button onclick="addCard()">Add Card</button>
+
+<input type="text" id="search" placeholder="Search flashcards...">
+
 </div>
 
-<div class="cards-container" id="cards-container"></div>
+<div class="stats">
+<p>Total Cards: <span id="totalCards">0</span></p>
+</div>
+
+<div id="cardsContainer" class="cards"></div>
 
 <script src="script.js"></script>
-
 </body>
 </html>
