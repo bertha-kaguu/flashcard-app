@@ -4,6 +4,9 @@ const totalCards = document.getElementById("totalCards");
 
 let cards = JSON.parse(localStorage.getItem("flashcards")) || [];
 
+let correct = 0;
+let wrong = 0;
+
 function save(){
 localStorage.setItem("flashcards", JSON.stringify(cards));
 }
