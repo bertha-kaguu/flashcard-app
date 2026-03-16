@@ -38,6 +38,10 @@
     margin-bottom:20px;
     }
     
+    .features{
+        margin:15px;
+        }
+        
     .controls input,
     .controls select{
     padding:10px;
