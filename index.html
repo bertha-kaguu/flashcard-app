@@ -3,55 +3,52 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Flashcards Pro</title>
+<title>Flashcards Pro+ Study App</title>
 <link rel="stylesheet" href="style.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-
 <body>
 
 <header>
-<h1>🧠 Flashcards Pro</h1>
+<h1>🧠 Flashcards Study App</h1>
 <button id="themeToggle">🌙</button>
 </header>
 
 <div class="controls">
-
 <input type="text" id="question" placeholder="Enter question">
 <input type="text" id="answer" placeholder="Enter answer">
-
 <select id="category">
 <option value="General">General</option>
 <option value="Programming">Programming</option>
 <option value="Science">Science</option>
 <option value="Math">Math</option>
 </select>
-
 <button onclick="addCard()">Add Card</button>
-
+<button onclick="exportCards()">Export</button>
+<input type="file" id="importFile" accept=".json" onchange="importCards(event)">
 <input type="text" id="search" placeholder="Search flashcards...">
-
+<button id="studyModeBtn">Start Quiz</button>
 </div>
-
-<div class="features">
-
-    <button onclick="startQuiz()">Start Study Quiz</button>
-    <button onclick="exportCards()">Export Cards</button>
-    <input type="file" id="importFile">
-    
-    </div>
 
 <div class="stats">
-<p>Total Cards: <span id="totalCards">0</span></p>
-<p>Correct: <span id="correct">0</span></p>
-<p>Wrong: <span id="wrong">0</span></p>
+<p>Total Cards: <span id="totalCards">0</span> | Score: <span id="score">0</span></p>
 </div>
 
-<canvas id="progressChart"></canvas>
-
-<div id="quizContainer"></div>
-
 <div id="cardsContainer" class="cards"></div>
+
+<!-- Quiz Modal -->
+<div id="quizModal" class="modal">
+<div class="modal-content">
+<h2>Quiz Mode</h2>
+<p id="quizQuestion"></p>
+<div id="quizAnswers"></div>
+<button onclick="nextQuestion()">Next</button>
+<button onclick="closeQuiz()">Exit Quiz</button>
+</div>
+</div>
+
+<!-- Chart -->
+<canvas id="progressChart" width="400" height="200"></canvas>
 
 <script src="script.js"></script>
 </body>
