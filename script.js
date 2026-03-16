@@ -13,6 +13,10 @@ localStorage.setItem("flashcards", JSON.stringify(cards));
 
 function updateStats(){
 totalCards.textContent = cards.length;
+document.getElementById("correct").textContent = correct;
+document.getElementById("wrong").textContent = wrong;
+
+updateChart();
 }
 
 function render(){
@@ -72,7 +76,13 @@ alert("Fill all fields");
 return;
 }
 
-cards.push({question,answer,category});
+cards.push({
+question:question,
+answer:answer,
+category:caategory,
+interval:1,
+nextReview:Date.now()
+});
 
 save();
 render();
