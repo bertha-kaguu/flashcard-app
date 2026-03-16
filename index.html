@@ -34,9 +34,23 @@
 
 </div>
 
+<div class="features">
+
+    <button onclick="startQuiz()">Start Study Quiz</button>
+    <button onclick="exportCards()">Export Cards</button>
+    <input type="file" id="importFile">
+    
+    </div>
+
 <div class="stats">
 <p>Total Cards: <span id="totalCards">0</span></p>
+<p>Correct: <span id="correct">0</span></p>
+<p>Wrong: <span id="wrong">0</span></p>
 </div>
+
+<canvas id="progressChart"></canvas>
+
+<div id="quizContainer"></div>
 
 <div id="cardsContainer" class="cards"></div>
 
