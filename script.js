@@ -1,58 +1,78 @@
-const container = document.getElementById("cards-container");
+const container = document.getElementById("cardsContainer");
+const searchInput = document.getElementById("search");
+const totalCards = document.getElementById("totalCards");
 
-let flashcards = JSON.parse(localStorage.getItem("flashcards")) || [];
+let cards = JSON.parse(localStorage.getItem("flashcards")) || [];
 
-function saveCards(){
-localStorage.setItem("flashcards", JSON.stringify(flashcards));
+function save(){
+localStorage.setItem("flashcards", JSON.stringify(cards));
 }
 
-function displayCards(){
+function updateStats(){
+totalCards.textContent = cards.length;
+}
 
-container.innerHTML = "";
+function render(){
 
-flashcards.forEach((card,index)=>{
+container.innerHTML="";
 
-const flashcard = document.createElement("div");
-flashcard.className="flashcard";
+const search = searchInput.value.toLowerCase();
 
-flashcard.innerHTML=`
-<div class="card-inner">
-<div class="card-front">
+cards
+.filter(card => 
+card.question.toLowerCase().includes(search) ||
+card.answer.toLowerCase().includes(search)
+)
+.forEach((card,index)=>{
+
+const div = document.createElement("div");
+div.className="flashcard";
+
+div.innerHTML=`
+
+<div class="inner">
+
+<div class="front">
 ${card.question}
 </div>
 
-<div class="card-back">
-<div>
+<div class="back">
 <p>${card.answer}</p>
-<button class="delete-btn" onclick="deleteCard(${index})">Delete</button>
+<small>${card.category}</small>
+<button class="delete" onclick="deleteCard(${index})">Delete</button>
 </div>
+
 </div>
-</div>
+
 `;
 
-flashcard.addEventListener("click",()=>{
-flashcard.classList.toggle("flipped");
+div.addEventListener("click",()=>{
+div.classList.toggle("flip");
 });
 
-container.appendChild(flashcard);
+container.appendChild(div);
 
 });
+
+updateStats();
+
 }
 
-function addFlashcard(){
+function addCard(){
 
 const question = document.getElementById("question").value;
 const answer = document.getElementById("answer").value;
+const category = document.getElementById("category").value;
 
-if(question==="" || answer===""){
-alert("Please fill both fields");
+if(!question || !answer){
+alert("Fill all fields");
 return;
 }
 
-flashcards.push({question,answer});
+cards.push({question,answer,category});
 
-saveCards();
-displayCards();
+save();
+render();
 
 document.getElementById("question").value="";
 document.getElementById("answer").value="";
@@ -60,10 +80,20 @@ document.getElementById("answer").value="";
 
 function deleteCard(index){
 
-flashcards.splice(index,1);
+cards.splice(index,1);
+save();
+render();
 
-saveCards();
-displayCards();
 }
 
-displayCards();
+searchInput.addEventListener("input",render);
+
+render();
+
+const toggle = document.getElementById("themeToggle");
+
+toggle.addEventListener("click",()=>{
+
+document.body.classList.toggle("dark");
+
+});
