@@ -268,35 +268,3 @@ function schedule(card,success){
     
     });
     
-    
-    
-    /* AI FLASHCARD GENERATOR */
-    
-    function generateAI(){
-    
-    const topic = prompt("Enter topic");
-    
-    if(!topic) return;
-    
-    cards.push(
-    {
-    question:`What is ${topic}?`,
-    answer:`${topic} is an important concept related to ${topic}.`,
-    category:"AI",
-    interval:1,
-    nextReview:Date.now()
-    });
-    
-    cards.push(
-    {
-    question:`Why is ${topic} important?`,
-    answer:`It helps understand deeper ideas about ${topic}.`,
-    category:"AI",
-    interval:1,
-    nextReview:Date.now()
-    });
-    
-    save();
-    render();
-    
-    }
