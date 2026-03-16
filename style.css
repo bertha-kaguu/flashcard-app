@@ -1,17 +1,46 @@
-body{
-    font-family: Arial;
-    background:#f4f6fb;
-    text-align:center;
-    padding:20px;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial;
     }
     
-    h1{
+    body{
+    background:#f2f5ff;
+    padding:30px;
+    text-align:center;
+    transition:0.3s;
+    }
+    
+    body.dark{
+    background:#1e1e2f;
+    color:white;
+    }
+    
+    header{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    align-items:center;
     margin-bottom:20px;
     }
     
-    .card-form input{
+    #themeToggle{
+    padding:8px 12px;
+    cursor:pointer;
+    }
+    
+    .controls{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    justify-content:center;
+    margin-bottom:20px;
+    }
+    
+    .controls input,
+    .controls select{
     padding:10px;
-    margin:5px;
     border-radius:6px;
     border:1px solid #ccc;
     }
@@ -19,27 +48,25 @@ body{
     button{
     padding:10px 15px;
     border:none;
-    background:#4a6cf7;
+    background:#5a67ff;
     color:white;
     border-radius:6px;
     cursor:pointer;
     }
     
-    .cards-container{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
+    .cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
     gap:20px;
     margin-top:30px;
     }
     
     .flashcard{
-    width:220px;
-    height:140px;
+    height:150px;
     perspective:1000px;
     }
     
-    .card-inner{
+    .inner{
     position:relative;
     width:100%;
     height:100%;
@@ -48,12 +75,12 @@ body{
     cursor:pointer;
     }
     
-    .flashcard.flipped .card-inner{
+    .flashcard.flip .inner{
     transform:rotateY(180deg);
     }
     
-    .card-front,
-    .card-back{
+    .front,
+    .back{
     position:absolute;
     width:100%;
     height:100%;
@@ -63,22 +90,29 @@ body{
     align-items:center;
     justify-content:center;
     padding:15px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
     backface-visibility:hidden;
     }
     
-    .card-back{
+    .back{
     transform:rotateY(180deg);
-    background:#4a6cf7;
+    background:#5a67ff;
+    color:white;
+    flex-direction:column;
+    }
+    
+    .delete{
+    margin-top:10px;
+    background:red;
+    padding:6px 10px;
+    border-radius:5px;
+    }
+    
+    body.dark .front{
+    background:#2c2c44;
     color:white;
     }
     
-    .delete-btn{
-    margin-top:8px;
-    background:#ff4d4d;
-    padding:5px 10px;
-    border:none;
-    color:white;
-    border-radius:5px;
-    cursor:pointer;
+    body.dark .back{
+    background:#6c7cff;
     }
